@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS CDN  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+    <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- Style to fix the issue of text extending past card length -->
+    <style>
+        .card-body a {
+            word-break: break-all;
+        }
+
+        .articleHeadline {
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Bootstrap Search -->
+    <div class="container">
+
+        <!-- Jumbotron for Title -->
+        <div class="jumbotron" style="background-color: #20315A ; color: white;">
+            <h1 class="text-center">
+                <strong>
+                    <i class="fa fa-sun-o"></i> Weather Dashboard</strong>
+            </h1>
+        </div>
+
+        <!-- Row for Displaying Previous Searches -->
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <!-- First card is for handling the search parameters -->
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="fa fa-list-alt"></i> Search for a City:</strong>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Here we create an HTML Form for handling the inputs-->
+                        <form role="form">
+
+                            <!-- Here we create the text box for capturing the search term-->
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="search-term" placeholder="ex: Pittsburgh">
+                            </div>
+
+                            <!-- submit button -->
+                            <button type="submit" class="btn btn-default" id="run-search">
+                                <i class="fa fa-search"></i> Search</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>
+                            <i class="fa fa-list-alt"></i>Previous Searches</strong>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Here we create an HTML Form for handling the inputs-->
+                        <form role="form">
+
+                            <!-- Here we create the text box for capturing the search term-->
+                            <div id="citiesSearched" class="form-group">
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- This row will handle all of the retrieved articles -->
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+
+                <!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+                <div class="card">
+                    <!--change to current-->
+
+                    <!-- card Heading for the retrieved articles box -->
+                    <div class="card-header">
+                        <!--possibly change to current-header-->
+                        <strong>
+                            <i class="fa fa-clock-o"></i> Current Weather</strong>
+                            <!-- <span id="icon"><img id="wicon" src="" alt="Weather icon"></span> -->
+                        <div class="city"></div>
+                        <div class="date"></div>
+                        <div class="icon"></div>
+                        <div class="wind"></div>
+                        <div class="humidity"></div>
+                        <div class="tempF"></div>
+                        <div id="UV" class="UVIndex"></div>
+                    </div>
+
+                    <!-- This main card will hold each of the resulting articles -->
+                    <div class="card-body" id="daily-section">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <!--change to fiveDay-->
+
+                    <!-- card Heading for the retrieved articles box -->
+                    <div class="card-header">
+                        <!--possibly change to fiveDayHeader-->
+                        <strong>
+                            <i class="fa fa-calendar"></i> Five Day Forecast</strong>
+                    </div>
+
+                    <!-- This main card will hold each of the resulting articles -->
+                    <div class="row card-body">
+                        <div class="col-sm-2 dateOne"></div>
+                        <div class="col-sm-2 dateTwo"></div>
+                        <div class="col-sm-2 dateThree"></div>
+                        <div class="col-sm-2 dateFour"></div>
+                        <div class="col-sm-2 dateFive"></div>
+                    </div>
+                    <div class="row card-body">
+                        <div class="col-sm-2 iconOne"></div>
+                        <div class="col-sm-2 iconTwo"></div>
+                        <div class="col-sm-2 iconThree"></div>
+                        <div class="col-sm-2 iconFour"></div>
+                        <div class="col-sm-2 iconFive"></div>
+                    </div>
+                    <div class="row card-body" id="forecast-section">
+                        <div class="col-sm-2 dayOne"></div>
+                        <div class="col-sm-2 dayTwo"></div>
+                        <div class="col-sm-2 dayThree"></div>
+                        <div class="col-sm-2 dayFour"></div>
+                        <div class="col-sm-2 dayFive"></div> 
+                    </div>
+                    <div class="row card-body">
+                        <div class="col-sm-2 dayOneH"></div>
+                        <div class="col-sm-2 dayTwoH"></div>
+                        <div class="col-sm-2 dayThreeH"></div>
+                        <div class="col-sm-2 dayFourH"></div>
+                        <div class="col-sm-2 dayFiveH"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Region -->
+        <div class="row">
+            <div class="col-sm-12">
+
+                <!-- Line Break followed by closing -->
+                <hr>
+                <h5 class="text-center">
+                    <small>Wherever you go, whatever the weather, always bring your own sunshine.
+                        <i class="fa fa-heart"></i>
+                    </small>
+                </h5>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- jQuery JS -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Code to the JavaScript File -->
+    <script src="main.js"></script>
+
+</body>
+
+</html>
